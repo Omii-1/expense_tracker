@@ -7,7 +7,19 @@ const expenseSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
+    required: true,
+    enums: ["Food",
+      "Transportation",
+      "Utilities",
+      "Rent",
+      "Entertainment",
+      "Health",
+      "Education",
+      "Shopping",
+      "Travel",
+      "Insurance",
+      "Savings",
+      "Miscellaneous"]
   },
   description: {
     type: String
@@ -19,6 +31,6 @@ const expenseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   }
-}, {timestamps: true})
+}, { timestamps: true })
 
-const Expense = mongoose.model("Expense", expenseSchema)
+export const Expense = mongoose.model("Expense", expenseSchema)

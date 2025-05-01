@@ -15,6 +15,7 @@ const loginBody = zod.object({
   password: zod.string().min(6)
 }).strict()
 
+// signip
 export const signupController = async (req, res) => {
   try {
     const validation = signupBody.safeParse(req.body)
@@ -64,10 +65,9 @@ export const signupController = async (req, res) => {
   }
 }
 
+// login
 export const signinController = async (req, res) => {
   try {
-    console.log(req.body);
-    
     const {email, password} = req.body
     const validation = loginBody.safeParse({email, password})
 
@@ -101,5 +101,3 @@ export const signinController = async (req, res) => {
     
   }
 }
-
-export default {signupController, signinController}
