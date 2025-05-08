@@ -101,3 +101,28 @@ export const signinController = async (req, res) => {
     
   }
 }
+
+// check
+export const checkCookies = async(req, res) => {
+  try {
+    const {jwt, id} = req.cookies
+
+    if(!jwt || !id){
+      return res.status(401).json({
+        isAuthenticated: false,
+        error: "User is not authenticated"
+      })
+    }
+
+    return res.status(201).json({
+      message: "User is authenticated",
+      isAuthenticated: true,
+      id
+    })
+  } catch (error) {
+    console.log("Error in checkCookies controller: ", error);
+    return res.status(500).json({
+      error: "Internal server error"
+    })
+  }
+}
